@@ -1,6 +1,12 @@
 function CheckLogin(req, res, next) {
-    // logic will be added later
+    const uname = req.body.uname;
+    const passwd = req.body.passwd;
+
+    console.log("Username:", uname);
+    console.log("Password:", passwd);
+
     next();
 }
 
 module.exports = { CheckLogin };
+
