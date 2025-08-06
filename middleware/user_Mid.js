@@ -1,3 +1,5 @@
+const md5 = require('md5');
+
 const pool = require("../db");
 
 async function CheckLogin(req, res, next) {
@@ -9,12 +11,14 @@ async function CheckLogin(req, res, next) {
     //test
     console.log("מנסה לבדוק שם וסיסמה:", uname, passwd);
 
+    const enc_pass = md5("A" + passwd);
     try {
         const [rows] = await pool.query("SELECT * FROM users WHERE username = ?", [uname]);
 
         console.log("תוצאה מהמסד:", rows);
 
-        if (rows.length > 0 && rows[0].password === passwd) {
+
+        if (rows.length > 0 && rows[0].password === enc_pass){
             req.validUser = true;
             req.user = rows[0]; // שומרים את כל הנתונים של המשתמש
         } else {
