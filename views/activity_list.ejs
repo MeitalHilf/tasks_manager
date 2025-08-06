@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>רשימת משימות</title>
+</head>
+<body>
+<h1>רשימת משימות</h1>
+
+<% if (tasks.length === 0) { %>
+    <p>אין משימות להצגה.</p>
+<% } else { %>
+    <ul>
+        <% tasks.forEach(task => { %>
+            <li>
+                <strong><%= task.title %></strong> - <%= task.description %>
+                (קטגוריה: <%= task.category_id %>, בוצעה: <%= task.is_completed ? 'כן' : 'לא' %>)
+            </li>
+        <% }) %>
+    </ul>
+<% } %>
+
+</body>
+</html>
