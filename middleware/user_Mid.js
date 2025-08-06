@@ -1,11 +1,16 @@
-const pool = require("../db").pool;
+const pool = require("../db");
 
 async function CheckLogin(req, res, next) {
     const uname = req.body.uname;
     const passwd = req.body.passwd;
 
+    //test
+    console.log("מנסה לבדוק שם וסיסמה:", uname, passwd);
+
     try {
         const [rows] = await pool.query("SELECT * FROM users WHERE username = ?", [uname]);
+
+        console.log("תוצאה מהמסד:", rows);
 
         if (rows.length > 0 && rows[0].password === passwd) {
             req.validUser = true;
@@ -20,3 +25,5 @@ async function CheckLogin(req, res, next) {
         res.status(500).send("שגיאה במסד הנתונים");
     }
 }
+
+module.exports = { CheckLogin };
