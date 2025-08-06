@@ -43,7 +43,6 @@ index.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = index;
 
 const PORT = process.env.PORT || 3000;
 

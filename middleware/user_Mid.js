@@ -1,6 +1,8 @@
 const pool = require("../db");
 
 async function CheckLogin(req, res, next) {
+
+    console.log("BODY:", req.body);
     const uname = req.body.uname;
     const passwd = req.body.passwd;
 
