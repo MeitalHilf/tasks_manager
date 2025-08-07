@@ -1,13 +1,21 @@
-// Middleware/task_Mid.js
 
-function addTask(req, res) { /* ... */ }
-function listTasks(req, res) { /* ... */ }
-function editTask(req, res) { /* ... */ }
-function deleteTask(req, res) { /* ... */ }
+
+function AddTask(req, res, next) {
+    next();
+    /* ... */ }
+function EditTask(req, res, next) {
+    next();
+    /* ... */ }
+function ShowTasks(req, res, next) {
+    next();
+    /* ... */ }
+function DeleteTask(req, res, next) {
+    next();
+    /* ... */ }
 
 module.exports = {
-    addTask,
-    listTasks,
-    editTask,
-    deleteTask
+    AddTask,
+    EditTask,
+    ShowTasks,
+    DeleteTask
 };
