@@ -5,10 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
-var usersRouter = require('./routes/users_R');
-var authRouter = require('./routes/auth_R');
-var activityRouter = require('./routes/activity_R');
-var adminRouter = require('./routes/admin_R');
+
+var authRouter = require('./Routes/auth_R');
+var activityRouter = require('./Routes/tasks_R');
+var adminRouter = require('./Routes/dashboard_R');
 
 
 var index = express();
@@ -24,7 +24,7 @@ index.use(cookieParser());
 index.use(express.static(path.join(__dirname, 'public')));
 
 
-index.use('/users', usersRouter);
+
 index.use('/login', authRouter);
 index.use('/admin', adminRouter);
 index.use('/activity', activityRouter);
