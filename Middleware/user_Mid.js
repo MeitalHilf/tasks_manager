@@ -41,10 +41,14 @@ async function CheckLogin(req, res, next) {
     } catch (err) {
         console.log(err);
     }
+//בדיקה מה נשלח
+    console.log("Username:", uname);
+    console.log("Password:", passwd);
 
 
     if(rows.length > 0){
         req.validUser = true;
+        req.user = rows[0];
         let val = `${rows[0].id},${rows[0].name}`;
         let token = jwt.sign(
             {data: val},
@@ -61,4 +65,6 @@ async function CheckLogin(req, res, next) {
     next();
 }
 
-module.exports = { CheckLogin };
+
+module.exports = { CheckLogin, isLogged };
+

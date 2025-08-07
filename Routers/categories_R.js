@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { AddCategory, EditCategory,ShowCategory, DeleteCategory } = require('../Middleware/category_Mid');
+const { isLogged } = require('../Middleware/user_Mid');
+router.use(isLogged);
 
 
 // main for category pages
