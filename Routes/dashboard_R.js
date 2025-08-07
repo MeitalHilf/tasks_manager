@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-// GET /admin
 router.get('/', (req, res) => {
-    res.render('admin_menu');
-});
+    // if (!req.user) {
+    //     return res.redirect('/');
+    // }
 
-// דף הוספת משתמש
-router.get('/add', (req, res) => {
-    res.render('add_user');
+    res.render('dashboard', {
+        user: req.user
+    });
 });
 
 module.exports = router;
