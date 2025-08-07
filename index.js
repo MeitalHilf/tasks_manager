@@ -30,10 +30,6 @@ index.use('/admin', adminRouter);
 index.use('/activity', activityRouter);
 
 
-// catch 404 and forward to error handler
-index.use(function(req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 index.use(function(err, req, res, next) {
