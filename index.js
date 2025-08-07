@@ -3,9 +3,10 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-const bodyParser = require('body-parser');
+
 const path = require('path');
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: true }));
+
 
 
 const dotenv = require("dotenv");
@@ -28,6 +29,8 @@ global.addSlashes    = require('slashes').addSlashes;
 global.stripSlashes  = require('slashes').stripSlashes;
 
 // Routers && Pages
+const user_Mid = require('./Middleware/user_Mid');
+
 const authRoutes = require("./Routers/auth_R");
 app.use("/", authRoutes);
 
