@@ -24,7 +24,7 @@ router.get('/add', (req, res) => {
 
 
 router.post('/add', AddCategory, (req, res) => {
-
+//שימוש בהמשך
 });
 
 
@@ -43,16 +43,12 @@ router.post('/edit', EditCategory, (req, res) => {
 
 });
 
-
-
 router.get('/list', ShowCategory, (req, res) => {
-    // if (!req.user) return res.redirect('/');
     res.render('categories_list', {
         user: req.user,
-        tasks: req.tasks
+        categories: req.categories // <-- חשוב! זה השם שהתבנית מצפה לו
     });
 });
-
 
 
 

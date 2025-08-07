@@ -26,10 +26,19 @@ async function EditCategory(req, res, next) {
 }
 
 async function ShowCategory(req, res, next) {
+    const query = `SELECT * FROM categories`;
+    const promisePool = db_pool.promise();
 
-
-    next();
+    try {
+        const [rows] = await promisePool.query(query);
+        req.categories = rows; // זה מה שנשלח ל־EJS
+        next();
+    } catch (err) {
+        console.error("שגיאה בשליפת קטגוריות:", err);
+        res.status(500).send("שגיאה בשליפת קטגוריות");
+    }
 }
+
 
 
 async function DeleteCategory(req, res, next) {
