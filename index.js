@@ -23,17 +23,26 @@ app.set("views", path.join(__dirname, "views"));
 global.addSlashes    = require('slashes').addSlashes;
 global.stripSlashes  = require('slashes').stripSlashes;
 
+// Routers && Pages
+const authRoutes = require("./Routers/auth_R");
+app.use("/", authRoutes);
 
-app.use(express.static(path.join(__dirname, "public")));
+const dashboardRoutes = require('./Routers/dashboard_R');
+app.use('/dashboard', dashboardRoutes);
 
+const tasksRoutes = require('./Routers/tasks_R');
+app.use('/tasks', tasksRoutes);
 
-app.use('/login', authRouter);
-app.use('/admin', adminRouter);
-app.use('/activity', activityRouter);
-
+const categoryRoutes = require('./Routers/category_R');
+app.use('/category', categoryRoutes);
 
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+
+
+
+
 
