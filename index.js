@@ -11,7 +11,7 @@ var activityRouter = require('./Routes/tasks_R');
 var adminRouter = require('./Routes/dashboard_R');
 
 
-var index = express();
+const app = express();
 
 // view engine setup
 index.set('views', path.join(__dirname, 'views'));
