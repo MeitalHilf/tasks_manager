@@ -1,13 +1,32 @@
-// Middleware/category_Mid.js
+// Middleware להוספת קטגוריה
+async function AddCategory(req, res, next) {
 
-function addCategory(req, res) { /* ... */ }
-function listCategories(req, res) { /* ... */ }
-function editCategory(req, res) { /* ... */ }
-function deleteCategory(req, res) { /* ... */ }
+    next();
+}
+
+
+
+async function EditCategory(req, res, next) {
+
+    next();
+}
+
+async function ShowCategory(req, res, next) {
+
+
+    next();
+}
+
+
+async function DeleteCategory(req, res, next) {
+
+    next();
+}
+
 
 module.exports = {
-    addCategory,
-    listCategories,
-    editCategory,
-    deleteCategory
+    AddCategory,
+    EditCategory,
+    ShowCategory,
+    DeleteCategory
 };
