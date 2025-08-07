@@ -2,8 +2,8 @@
 async function AddCategory(req, res, next) {
 
     const name = req.body.name?.trim();
-    const userId = req.user_id;
 
+    const userId = req.user_id;
     if (!name) return res.status(400).send("יש להזין שם קטגוריה");
     if (!userId) return res.status(401).send("המשתמש לא מחובר");
 
