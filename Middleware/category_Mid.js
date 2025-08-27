@@ -33,7 +33,14 @@ async function EditCategory(req, res, next) {
         const query = "UPDATE categories SET name=? WHERE id=? AND user_id=?";
         const promisePool = db_pool.promise();
 
-    next();
+        const [result] = await promisePool.query(query, [newName, id, userId]);
+
+
+        if (result.affectedRows === 0) {
+            return res.status(404).send("לא נמצאה קטגוריה שלך עם המזהה הזה");
+        }
+
+        return res.redirect("/category/list");
     } catch (err) {
         console.error("שגיאה בעדכון קטגוריה:", err);
         return res.status(500).send("שגיאה בעדכון קטגוריה");
