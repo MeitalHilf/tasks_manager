@@ -65,6 +65,11 @@ async function ShowCategory(req, res, next) {
 
 
 async function DeleteCategory(req, res, next) {
+    const id = parseInt(req.body.id, 10);
+    const userId = req.user_id;
+
+    if (!id) return res.status(400).send("חסר מזהה קטגוריה");
+    if (!userId) return res.status(401).send("המשתמש לא מחובר");
 
     next();
 }
