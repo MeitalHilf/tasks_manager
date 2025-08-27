@@ -22,6 +22,12 @@ async function AddCategory(req, res, next) {
 
 
 async function EditCategory(req, res, next) {
+    const id = parseInt(req.body.id, 10);
+    const newName = req.body.newName?.trim();
+    const userId = req.user_id;
+
+    if (!id || !newName) return res.status(400).send("חסר מזהה או שם חדש");
+    if (!userId) return res.status(401).send("המשתמש לא מחובר");
 
     next();
 }
