@@ -3,27 +3,24 @@ const jwt = require('jsonwebtoken');
 
 async function isLogged(req, res, next) {
     const jwtToken = req.cookies.ImLoggedToYoman;
-    let user_id = -1;
-
-    if (jwtToken !== "") {
-        jwt.verify(jwtToken, 'myPrivateKey', async (err, decodedToken) => {
-            if (err) {
-                console.log("err=",err);
-            } else {
-                let data = decodedToken.data;
-                user_id = data.split(",")[0];
-                req.user_id = user_id;
-            }
-        });
+    if (!jwtToken) {
+        return res.redirect("/");
     }
 
-    if (user_id < 0) {
-        res.redirect("/");
+    try {
+        const decoded = jwt.verify(jwtToken, "myPrivateKey"); // בלי callback
+        const data = decoded.data; // "id,name"
+        const userId = parseInt(data.split(",")[0], 10);
+        if (!userId) {
+            return res.redirect("/");
+        }
+        req.user_id = userId;
+        return next();
+    } catch (err) {
+        console.log("Token error:", err);
+        return res.redirect("/");
     }
-
-    next();
 }
-
 
 async function CheckLogin(req, res, next) {
     const uname = (req.body.uname  !== undefined) ? addSlashes(req.body.uname    ) : "";
