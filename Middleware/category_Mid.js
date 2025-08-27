@@ -29,7 +29,15 @@ async function EditCategory(req, res, next) {
     if (!id || !newName) return res.status(400).send("חסר מזהה או שם חדש");
     if (!userId) return res.status(401).send("המשתמש לא מחובר");
 
+    try {
+        const query = "UPDATE categories SET name=? WHERE id=? AND user_id=?";
+        const promisePool = db_pool.promise();
+
     next();
+    } catch (err) {
+        console.error("שגיאה בעדכון קטגוריה:", err);
+        return res.status(500).send("שגיאה בעדכון קטגוריה");
+    }
 }
 
 async function ShowCategory(req, res, next) {
