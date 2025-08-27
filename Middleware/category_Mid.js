@@ -71,7 +71,14 @@ async function DeleteCategory(req, res, next) {
     if (!id) return res.status(400).send("חסר מזהה קטגוריה");
     if (!userId) return res.status(401).send("המשתמש לא מחובר");
 
-    next();
+    try {
+        const query = "DELETE FROM categories WHERE id=? AND user_id=?";
+        // המשך בשלב הבא
+        next();
+    } catch (err) {
+        console.error("שגיאה במחיקת קטגוריה:", err);
+        return res.status(500).send("शגיאה במחיקת קטגוריה");
+    }
 }
 
 
