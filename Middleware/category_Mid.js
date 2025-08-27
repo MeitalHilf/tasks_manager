@@ -73,8 +73,13 @@ async function DeleteCategory(req, res, next) {
 
     try {
         const query = "DELETE FROM categories WHERE id=? AND user_id=?";
-        // המשך בשלב הבא
-        next();
+        const promisePool = db_pool.promise();
+        const [result] = await promisePool.query(query, [id, userId]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).send("לא נמצאה קטגוריה למחיקה");
+        }
+        return res.redirect("/category/list");
     } catch (err) {
         console.error("שגיאה במחיקת קטגוריה:", err);
         return res.status(500).send("शגיאה במחיקת קטגוריה");
