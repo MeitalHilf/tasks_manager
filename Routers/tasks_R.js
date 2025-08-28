@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { AddTask, EditTask,ShowTasks,DeleteTask} = require('../Middleware/task_Mid');
 
+const { isLogged } = require('../Middleware/user_Mid');
+router.use(isLogged);
 
 // main for tasks pages
 router.get('/', (req, res) => {
